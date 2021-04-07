@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Which Pokemon is the Best???',
+    date: 'Feb 14 1999',
+    firstParagraph: `MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  MAGIKARP  `,
+
+    secondParagraph: `MAGIKARP IS THE BEST, ABSOLUTE S TIER STATUS, OMG WHAT A QUEEEEEEEEN, I LOVE MAGIKARP!!! MAGIKARP IS THE BEST, ABSOLUTE S TIER STATUS, OMG WHAT A QUEEEEEEEEN, I LOVE MAGIKARP!!! MAGIKARP IS THE BEST, ABSOLUTE S TIER STATUS, OMG WHAT A QUEEEEEEEEN, I LOVE MAGIKARP!!! MAGIKARP IS THE BEST, ABSOLUTE S TIER STATUS, OMG WHAT A QUEEEEEEEEN, I LOVE MAGIKARP!!! `,
+
+    thirdParagraph: `NO OTHERS CAN COMPARE TO THE TRUE POWER AND ELEGANCE OF THIS BEAUTIFUL CREATURE NO OTHERS CAN COMPARE TO THE TRUE POWER AND ELEGANCE OF THIS BEAUTIFUL CREATURENO OTHERS CAN COMPARE TO THE TRUE POWER AND ELEGANCE OF THIS BEAUTIFUL CREATURENO OTHERS CAN COMPARE TO THE TRUE POWER AND ELEGANCE OF THIS BEAUTIFUL CREATURE`
   }
 ];
 
@@ -114,3 +123,52 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+function articleMaker (articleSet) {
+//instantiate
+    const container =  document.createElement('div')
+    const title = document.createElement('h2')
+    const date = document.createElement('p')
+    const p1 = document.createElement('p')
+    const p2 = document.createElement('p')
+    const p3 = document.createElement('p')
+    const button = document.createElement('span')
+
+//structure
+    container.appendChild(title)
+    container.appendChild(date)
+    container.appendChild(p1)
+    container.appendChild(p2)
+    container.appendChild(p3)
+    container.appendChild(button)
+
+//assign classes
+    container.classList.add('article')
+    date.classList.add('date')
+    button.classList.add('expandButton')
+
+//textContent
+
+  title.textContent = articleSet.title
+  date.textContent = articleSet.date
+  p1.textContent = articleSet.firstParagraph
+  p2.textContent = articleSet.secondParagraph
+  p3.textContent = articleSet.thirdParagraph
+  button.textContent = '+'
+
+
+//add toggle event on button
+button.addEventListener('click', (e) => {
+  container.classList.toggle('article-open')
+})
+    return container;
+}
+
+const articleArr = data.map((articleObj) => {
+  return articleMaker(articleObj);
+})
+
+const articles = document.querySelector('.articles')
+
+articleArr.forEach((article) => {
+  articles.appendChild(article)
+})
